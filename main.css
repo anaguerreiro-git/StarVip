@@ -420,5 +420,158 @@ nav a {
     color:#111;
 }
 
+/* =====================================================
+   VARIÁVEIS DE COR
+   Mude os valores aqui pra alterar a cor em TODA a seção
+   de uma vez (não precisa procurar cor por cor no código).
+   ===================================================== */
+:root {
+  --starvip-red: #D2202B;       /* vermelho principal (cards e destaque) */
+  --starvip-red-dark: #A81820;  /* vermelho mais escuro, reserva */
+  --ink: #1A1A1A;                /* cor do texto escuro (título, badge) */
+  --muted: #6B6B70;              /* cinza do texto secundário */
+  --line: #ECECEC;               /* cinza claro, reserva pra bordas */
+  --card-gray: #F1F1F1;          /* fundo do card cinza (o destacado) */
+}
 
+/* Espaçamento externo da seção inteira. */
+/* max-width controla a largura máxima do conteúdo centralizado. */
+.section {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 64px 24px 96px;
+}
+
+/* Bloco do título + texto de apoio */
+.heading {
+  max-width: 640px; /* impede o texto de esticar demais em telas largas */
+  margin-bottom: 48px; /* espaço entre o título e os cards */
+}
+
+.heading h2 {
+  font-size: 52px;
+  line-height: 1.05;
+  font-weight: 900;
+  margin: 0 0 16px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+/* Estilo da "caixinha vermelha" ao redor da palavra destacada no título */
+.heading h2 .highlight {
+  display: inline-block;
+  background: var(--starvip-red);
+  color: #fff;
+  padding: 2px 12px;
+  border-radius: 6px; /* deixa os cantos arredondados. 0 = quadrado */
+}
+
+.heading h2 br { content: ""; display: block; margin-bottom: 4px; }
+
+.heading p {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* =====================================================
+   GRID DOS CARDS
+   3 colunas iguais, com espaço de 24px entre elas.
+   Se mudar a quantidade de cards no HTML, ajuste o
+   "repeat(3, 1fr)" pra refletir o novo número.
+   ===================================================== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+/* Estilo base, aplicado a TODOS os cards */
+.card {
+  position: relative; /* necessário pro badge se posicionar certo (não remover) */
+  border-radius: 16px;
+  padding: 40px 28px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+}
+
+/* Variação: card com fundo vermelho */
+.card--red {
+  background: var(--starvip-red);
+  color: #fff;
+}
+
+/* Variação: card com fundo cinza claro */
+.card--gray {
+  background: var(--card-gray);
+  color: var(--ink);
+}
+
+/* Variação: efeito de destaque (sobe o card e adiciona sombra) */
+/* Combine com .card--gray ou .card--red em QUALQUER card que */
+/* você quiser destacar — não é exclusivo do cinza. */
+.card--highlight {
+  transform: translateY(-16px); /* "sobe" o card 16px */
+  box-shadow: 0 24px 48px -20px rgba(210, 32, 43, 0.5); /* sombra vermelha suave */
+}
+
+/* Selo "Mais procurado" que fica flutuando acima do card destacado */
+.badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%); /* centraliza horizontalmente */
+  background: var(--ink);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 999px; /* deixa em formato de pílula */
+  white-space: nowrap; /* impede o texto de quebrar linha */
+}
+
+/* Círculo branco com o emoji/ícone dentro do card */
+.icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%; /* deixa redondo */
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px; /* tamanho do emoji */
+  margin-bottom: 4px;
+}
+
+.card h3 {
+  font-size: 19px;
+  font-weight: 800;
+  margin: 0;
+}
+
+.card p.desc {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 4px 0 0;
+  opacity: 0.9;
+}
+
+/* =====================================================
+   RESPONSIVO — TELAS PEQUENAS (celular)
+   Abaixo de 860px de largura, os cards empilham em
+   uma coluna só e o efeito de destaque (translateY) é
+   removido pra não ficar estranho no mobile.
+   ===================================================== */
+@media (max-width: 860px) {
+  .cards { grid-template-columns: 1fr; }
+  .card--highlight { transform: none; }
+  .heading h2 { font-size: 32px; }
+}
 
