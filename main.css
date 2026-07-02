@@ -57,16 +57,42 @@ nav a {
 
 .hero {
     position:relative;
-    height:100vh;
-    background-image:url("img/hero.png");
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:0 80px;
+    display:grid;
+    grid-template-columns: 40% 60%;
+    min-height:100vh;
+    padding-top:110px;
     overflow:hidden;
+    background:#000;
+}
+.hero-left {
+    background:#0b0b0b;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:80px;
+    position:relative;
+    z-index:5;
+
+}
+.hero-right {
+    position:relative;
+    overflow:hidden;
+
+}
+
+.hero-right::after {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.25); /*escurecer img hero*/
+
+}
+
+.hero-right img {
+
+    width:100%;
+    height:100%;
+    object-fit:cover;
 
 }
 
@@ -77,13 +103,15 @@ nav a {
     display:flex;
     flex-direction:column;
     align-items:flex-start;
+    margin-top:60px;
 }
 
 .hero-content h1 {
     font-family:"Teko", sans-serif;
-    font-size:80px;
-    line-height:.9;
+    font-size:92px;
+    line-height:.85;
     font-weight:900;
+    letter-spacing:-2px;
     text-transform:uppercase;
     margin-bottom:25px;
 }
@@ -92,65 +120,47 @@ nav a {
     color:#c91515;
 }
 
-.hero::after{ /* formas geometricas*/
+.hero::after { /* formas geometricas*/
     content:"";
-
     position:absolute;
-
     width:180px;
-
     height:180px;
-
     background:#c91515;
-
     top:120px;
-
     right:-90px;
-
     transform:rotate(45deg);
-
     z-index:1;
 }
 
-.shape{
+.hero-left {
+
+    box-shadow:
+    70px 0 120px rgba(0,0,0,.85);
+
+}
+
+.shape {
     position:absolute;
     z-index:1;
 }
 
-.shape-1{
+.shape-1 {
     width:180px;
     height:180px;
-
     background:#c91515;
-
     right:-90px;
     top:120px;
 
     transform:rotate(45deg);
 }
-.shape-2{
-    width:240px;
-    height:240px;
-
+.shape-2 {
+    width:260px;
+    height:260px;
     border:2px solid #c91515;
-
     right:120px;
     top:180px;
-
     transform:rotate(45deg);
 }
-.shape-3{
-    width:350px;
-    height:3px;
-
-    background:#c91515;
-
-    transform:rotate(-25deg);
-
-    right:200px;
-    top:350px;
-}
-
 
 .hero::before {
     content:"";
@@ -257,7 +267,6 @@ nav a {
 
 }
 
-
 .hero-buttons {
     display:flex;
     gap:20px;
@@ -267,7 +276,6 @@ nav a {
     display:flex;
     align-items:center;
     justify-content:center;
-
     width:220px;
     height:70px;
     background:#c91515;
@@ -279,11 +287,11 @@ nav a {
     transition:.3s;
 }
 
-.btn-primary:hover{
+.btn-primary:hover {
     background:#e11818;
 }
 
-.btn-secondary{
+.btn-secondary {
     display:flex;
     align-items:center;
     justify-content:center;
@@ -292,286 +300,95 @@ nav a {
     height:70px;
 
     background:#111111;
-
     color:white;
-
     border:2px solid #c91515;
-
     border-radius:18px;
-
     text-decoration:none;
-
     font-size:24px;
-
     font-weight:700;
-
     cursor:pointer;
 }
 
-.sobre{
+.sobre {
     background:#ffffff;
     color:#111111;
-
     padding:120px 80px;
-}
+} 
 
-.diferenciais{
-
+.diferenciais {
     display:flex;
-
     justify-content:center;
-
     gap:35px;
-
     margin-top:70px;
-
     flex-wrap:wrap;
 
 }
-.card{
+.card {
 
     width:340px;
-
     padding:45px 35px;
-
     border-radius:18px;
-
     text-align:center;
-
     transition:.4s;
 
 }
-.card-red{
-
+.card-red {
     background:#c91515;
-
     color:white;
 
 }
-.card-gray{
-
+.card-gray {
     background:#f1f1f1;
-
     color:#111;
 
 }
-.icon{
-
+.icon {
     width:85px;
-
     height:85px;
-
     border-radius:50%;
-
     background:white;
-
     color:#c91515;
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
     font-size:38px;
-
     margin:0 auto 25px;
 
 }
 
-.card-gray .icon{
-
+.card-gray .icon {
     background:#c91515;
-
     color:white;
 
 }
 
-.card h3{
-
+.card h3 {
     font-size:28px;
-
     margin-bottom:20px;
 
     font-weight:800;
 
 }
 
-.card p{
-
+.card p {
     font-size:17px;
-
     line-height:1.7;
 
 }
 
-.card:hover{
-
+.card:hover {
     transform:translateY(-12px);
 
 }
 
 .card-red p,
-.card-red h3{
+.card-red h3 {
     color:white;
 }
 .card-gray p,
-.card-gray h3{
+.card-gray h3 {
     color:#111;
 }
 
-/* =====================================================
-   VARIÁVEIS DE COR
-   Mude os valores aqui pra alterar a cor em TODA a seção
-   de uma vez (não precisa procurar cor por cor no código).
-   ===================================================== */
-:root {
-  --starvip-red: #D2202B;       /* vermelho principal (cards e destaque) */
-  --starvip-red-dark: #A81820;  /* vermelho mais escuro, reserva */
-  --ink: #1A1A1A;                /* cor do texto escuro (título, badge) */
-  --muted: #6B6B70;              /* cinza do texto secundário */
-  --line: #ECECEC;               /* cinza claro, reserva pra bordas */
-  --card-gray: #F1F1F1;          /* fundo do card cinza (o destacado) */
-}
 
-/* Espaçamento externo da seção inteira. */
-/* max-width controla a largura máxima do conteúdo centralizado. */
-.section {
-  max-width: 1140px;
-  margin: 0 auto;
-  padding: 64px 24px 96px;
-}
-
-/* Bloco do título + texto de apoio */
-.heading {
-  max-width: 640px; /* impede o texto de esticar demais em telas largas */
-  margin-bottom: 48px; /* espaço entre o título e os cards */
-}
-
-.heading h2 {
-  font-size: 52px;
-  line-height: 1.05;
-  font-weight: 900;
-  margin: 0 0 16px;
-  letter-spacing: -0.01em;
-  color: var(--ink);
-}
-
-/* Estilo da "caixinha vermelha" ao redor da palavra destacada no título */
-.heading h2 .highlight {
-  display: inline-block;
-  background: var(--starvip-red);
-  color: #fff;
-  padding: 2px 12px;
-  border-radius: 6px; /* deixa os cantos arredondados. 0 = quadrado */
-}
-
-.heading h2 br { content: ""; display: block; margin-bottom: 4px; }
-
-.heading p {
-  font-size: 15px;
-  color: var(--muted);
-  line-height: 1.6;
-  margin: 0;
-}
-
-/* =====================================================
-   GRID DOS CARDS
-   3 colunas iguais, com espaço de 24px entre elas.
-   Se mudar a quantidade de cards no HTML, ajuste o
-   "repeat(3, 1fr)" pra refletir o novo número.
-   ===================================================== */
-.cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  align-items: start;
-}
-
-/* Estilo base, aplicado a TODOS os cards */
-.card {
-  position: relative; /* necessário pro badge se posicionar certo (não remover) */
-  border-radius: 16px;
-  padding: 40px 28px 32px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 12px;
-}
-
-/* Variação: card com fundo vermelho */
-.card--red {
-  background: var(--starvip-red);
-  color: #fff;
-}
-
-/* Variação: card com fundo cinza claro */
-.card--gray {
-  background: var(--card-gray);
-  color: var(--ink);
-}
-
-/* Variação: efeito de destaque (sobe o card e adiciona sombra) */
-/* Combine com .card--gray ou .card--red em QUALQUER card que */
-/* você quiser destacar — não é exclusivo do cinza. */
-.card--highlight {
-  transform: translateY(-16px); /* "sobe" o card 16px */
-  box-shadow: 0 24px 48px -20px rgba(210, 32, 43, 0.5); /* sombra vermelha suave */
-}
-
-/* Selo "Mais procurado" que fica flutuando acima do card destacado */
-.badge {
-  position: absolute;
-  top: -14px;
-  left: 50%;
-  transform: translateX(-50%); /* centraliza horizontalmente */
-  background: var(--ink);
-  color: #fff;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 6px 16px;
-  border-radius: 999px; /* deixa em formato de pílula */
-  white-space: nowrap; /* impede o texto de quebrar linha */
-}
-
-/* Círculo branco com o emoji/ícone dentro do card */
-.icon {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%; /* deixa redondo */
-  background: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 30px; /* tamanho do emoji */
-  margin-bottom: 4px;
-}
-
-.card h3 {
-  font-size: 19px;
-  font-weight: 800;
-  margin: 0;
-}
-
-.card p.desc {
-  font-size: 14px;
-  line-height: 1.6;
-  margin: 4px 0 0;
-  opacity: 0.9;
-}
-
-/* =====================================================
-   RESPONSIVO — TELAS PEQUENAS (celular)
-   Abaixo de 860px de largura, os cards empilham em
-   uma coluna só e o efeito de destaque (translateY) é
-   removido pra não ficar estranho no mobile.
-   ===================================================== */
-@media (max-width: 860px) {
-  .cards { grid-template-columns: 1fr; }
-  .card--highlight { transform: none; }
-  .heading h2 { font-size: 32px; }
-}
 
